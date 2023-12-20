@@ -5,6 +5,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.auth.auth import auth_backend, fastapi_users, current_user
 from app.auth.models import User
 from app.auth.schemas import UserRead, UserCreate
+from app.auth import services
+from app.database import get_async_session
 
 app = FastAPI()
 
@@ -24,3 +26,8 @@ app.include_router(
 @app.get("/", include_in_schema=False)
 async def redirect_to_docs():
     return RedirectResponse(url='/docs')
+
+
+@app.get("/api/users")
+async def get_all_users(session: AsyncSession = Depends(get_async_session)):
+    return await services.get_all_users(session)
