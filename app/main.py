@@ -31,3 +31,8 @@ async def redirect_to_docs():
 @app.get("/api/users")
 async def get_all_users(session: AsyncSession = Depends(get_async_session)):
     return await services.get_all_users(session)
+
+
+@app.get("/api/current_user")
+async def get_current_user(user: User = Depends(current_user)):
+    return f"Hello, {user.email}"
