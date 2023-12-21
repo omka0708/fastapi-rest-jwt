@@ -10,17 +10,9 @@ jobs:
   build-deploy:
     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        
+    steps:     
       - uses: jtalk/k8s-deploy@v2
         with:
-          namespace: 'myapp'
           manifests: |
               kubernetes/
-          images: 'jtalk/myapp:${{ event.run_id }}'
-          imagepullsecrets: |
-            image-pull-secret1
-            image-pull-secret2
           kubectl-version: 'latest'
