@@ -19,4 +19,8 @@ jobs:
           namespace: 'myapp'
           manifests: |
               kubernetes/
+          images: 'jtalk/myapp:${{ event.run_id }}'
+          imagepullsecrets: |
+            image-pull-secret1
+            image-pull-secret2
           kubectl-version: 'latest'
