@@ -12,7 +12,14 @@ jobs:
     steps:
       - name: 'Create env file'
         run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+          echo "${{ secrets.DB_HOST }}" >> .env &&
+          echo "${{ secrets.DB_NAME }}" >> .env &&
+          echo "${{ secrets.DB_PASS }}" >> .env &&
+          echo "${{ secrets.DB_PORT }}" >> .env &&
+          echo "${{ secrets.DB_USER }}" >> .env &&
+          echo "${{ secrets.PGADMIN_EMAIL }}" >> .env &&
+          echo "${{ secrets.PGADMIN_PASSWORD }}" >> .env &&
+          echo "${{ secrets.SECRET_AUTH }}" >> .env
           
       - uses: actions/checkout@v2
       - name: Build the stack
