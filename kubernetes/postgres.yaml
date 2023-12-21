@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: rest-jwt-db
+        image: postgres
+        imagePullPolicy: Always
+        env:
+          - name: POSTGRES_USER
+            value: "root"
+          - name: POSTGRES_PASSWORD
+            value: "omka2061"
+          - name: POSTGRES_DB
+            value: "db"
+        ports:
+        - containerPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres-service
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres
+  ports:
+  - name: postgres-port
+    port: 5432
+    targetPort: 5432
