@@ -36,3 +36,7 @@ You can see documentation at:
     GET localhost:8000
 
 It will redirect you to API documentation. 
+
+## Kubernetes
+
+![ezgif com-video-to-gif-converted](https://github.com/omka0708/fastapi-rest-jwt/assets/56554057/cbe3848e-99c3-4034-a778-d8bc0074e3e7)
