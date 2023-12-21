@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:     
-      - uses: jtalk/k8s-deploy@v2
+      - uses: actions-hub/kubectl@master
+        env:
+          KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
-          manifests: |
-              kubernetes/
-          kubectl-version: 'latest'
+          args: get pods
